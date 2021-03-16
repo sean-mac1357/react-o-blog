@@ -4,12 +4,12 @@
 
 .App-header {
   background-color: #4c5057;
-  min-height: 180px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(30px + 2vmin);
 }
 
 .rainbow-text {

@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Route, Link, useHistory } from 'react-router-dom';
 import PonyDetails from './PonyDetails';
+import PonyReviewForm from './PonyReviewForm';
+import PonyReviewList from './PonyReviewList';
 
-const PonyList = () => {
+const PonyList = ({reload}) => {
     const [ponies, setPonies] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
         (async () => {
-            const ponyData = await fetch('http://127.0.0.1:3000/ponies').then(response => response.json());
+            const ponyData = await fetch('http://127.0.0.1:3000/characters').then(response => response.json());
             console.log("pony Data is: ", ponyData)
             setPonies(ponyData);
         })();
-    },[])
+    },[reload])
 
     return (
         <>
@@ -30,6 +32,10 @@ const PonyList = () => {
                     <Route path='/pony/:pony_slug'>
                         <PonyDetails ponies={ponies} />
                         <button type="button" onClick={() => history.goBack()}>Go Back</button>
+                        <hr />
+                        <PonyReviewForm />
+                        <hr />
+                        <PonyReviewList ponies={ponies}/>
                     </Route>
                 </>
             ) : (
